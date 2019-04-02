@@ -9,7 +9,7 @@ Authors@R: c(
 	person("Lahti", "Leo", email = "leo.lahti@iki.fi" , role = "aut"))
 Maintainer: Vasilis Dakos <vasilis.dakos@gmail.com>
 Description: The Early-Warning-Signals Toolbox provides methods for estimating
-    statistical changes in timeseries that can be used for identifying nearby
+    statistical changes in times eries that can be used for identifying nearby
     critical transitions. Based on Dakos et al (2012) Methods for Detecting
     Early Warnings of Critical Transitions in Time Series Illustrated Using
     Simulated Ecological Data. PLoS ONE 7(7):e41010 with contributions from S.R.
