@@ -5,22 +5,22 @@
 
 BDSboot <- function(X, varname, nboot, epsvec, emb) {
     # begin function
-    
+
     StdEpsAll <- X  # name of variable for BDS
     neps <- length(epsvec)
-    
+
     # Compute and print BDS test
-    message("***********************************************", quote = FALSE)
+    message(rep("*", 60), quote = FALSE)
     message(c("BDS test for ", varname), quote = FALSE)
     message(c("Embedding dimension = ", emb), quote = FALSE)
-    
+
     BDS.data <- bds.test(StdEpsAll, m = emb, epsvec)
-    
+
     message("BDS statistics for Nominal Data at each Epsilon", quote = FALSE)
     message(round(BDS.data$statistic, 3))
     message("P value based on standard normal", quote = FALSE)
     message(round(BDS.data$p.value, 3))
-    
+
     # Bootstrap the BDS test
     nobs <- length(StdEpsAll)
     bootmat <- matrix(0, nrow = emb - 1, ncol = neps)  # matrix to count extreme BDS values
@@ -38,19 +38,19 @@ BDSboot <- function(X, varname, nboot, epsvec, emb) {
         # report each time an iteration is completed cat('iteration = ',i,' of
         # ',nboot,'\n') # flush.console()
     }  # end bootstrap loop
-    
+
     message(" ", quote = FALSE)
     message(c("Bootstrap P estimates for ", varname), quote = FALSE)
     message(c("Bootstrap iterations = ", nboot), quote = FALSE)
-    
+
     Pboot <- bootmat/nboot
-    
+
     for (im in 1:(emb - 1)) {
         message(c("For embedding dimension =", im + 1), quote = FALSE)
         message(c("For epsilon = ", round(epsvec, 3), "bootstrap P = "), quote = FALSE)
         message(Pboot[im, ])
     }
-    
-    message("**********************************************************", quote = FALSE)
-    
-}  # end function 
+
+    message(rep("*", 60), quote = FALSE)
+
+}  # end function

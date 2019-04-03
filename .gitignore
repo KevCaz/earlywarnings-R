@@ -3,6 +3,7 @@
 .Ruserdata
 Makefile
 inst/tmp
+inst/extras
 .Renviron
 
 # History files

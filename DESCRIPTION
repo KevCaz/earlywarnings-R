@@ -33,3 +33,8 @@ Imports:
 LazyLoad: yes
 URL: http://www.early-warning-signals.org, http://www.vasilisdakos.info
 License: BSD_2_clause + file LICENSE
+Encoding: UTF-8
+RoxygenNote: 6.1.1
+Suggests: knitr, testthat, tibble, rmarkdown, rworldmap
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)

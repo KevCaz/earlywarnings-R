@@ -6,18 +6,18 @@
 #' see ref below
 #'
 #' Arguments:
-#'    @param timeseries a numeric vector of the observed univariate timeseries values or a numeric matrix where the first column represents the time index and the second the observed timeseries values. Use vectors/matrices with headings.
-#'    @param indicator is the statistic (leading indicator) selected for which the sensitivity analysis is perfomed. Currently, the indicators supported are: \code{ar1} autoregressive coefficient of a first order AR model, \code{sd} standard deviation, \code{acf1} autocorrelation at first lag, \code{sk} skewness, \code{kurt} kurtosis, \code{cv} coeffcient of variation, \code{returnrate}, and \code{densratio} density ratio of the power spectrum at low frequencies over high frequencies.
-#'    @param winsizerange is the range of the rolling window sizes expressed as percentage of the timeseries length (must be numeric between 0 and 100). Default is 25\% - 75\%.
-#'    @param incrwinsize increments the rolling window size (must be numeric between 0 and 100). Default is 25.
-#'    @param detrending the timeseries can be detrended/filtered. There are three options: \code{gaussian} filtering, \code{loess} fitting, \code{linear} detrending and \code{first-differencing}. Default is \code{no} detrending.
-#'    @param bandwidthrange is the range of the bandwidth used for the Gaussian kernel when gaussian filtering is selected. It is expressed as percentage of the timeseries length (must be numeric between 0 and 100). Default is 5\% - 100\%.
-#'    @param spanrange parameter that controls the degree of smoothing (numeric between 0 and 100). Default is 5\% - 100\%. see more on loess{stats}
-#'    @param degree the degree of polynomial to be used for when loess fitting is applied, normally 1 or 2 (Default). see more on loess{stats}
-#'    @param incrbandwidth is the size to increment the bandwidth used for the Gaussian kernel when gaussian filtering is applied. It is expressed as percentage of the timeseries length (must be numeric between 0 and 100). Default is 20.
-#'    @param incrspanrange Span range
-#'    @param logtransform logical. If TRUE data are logtransformed prior to analysis as log(X+1). Default is FALSE. 
-#'    @param interpolate logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
+#' @param timeseries a numeric vector of the observed univariate timeseries values or a numeric matrix where the first column represents the time index and the second the observed timeseries values. Use vectors/matrices with headings.
+#' @param indicator is the statistic (leading indicator) selected for which the sensitivity analysis is perfomed. Currently, the indicators supported are: \code{ar1} autoregressive coefficient of a first order AR model, \code{sd} standard deviation, \code{acf1} autocorrelation at first lag, \code{sk} skewness, \code{kurt} kurtosis, \code{cv} coeffcient of variation, \code{returnrate}, and \code{densratio} density ratio of the power spectrum at low frequencies over high frequencies.
+#' @param winsizerange is the range of the rolling window sizes expressed as percentage of the timeseries length (must be numeric between 0 and 100). Default is 25\% - 75\%.
+#' @param incrwinsize increments the rolling window size (must be numeric between 0 and 100). Default is 25.
+#' @param detrending the timeseries can be detrended/filtered. There are three options: \code{gaussian} filtering, \code{loess} fitting, \code{linear} detrending and \code{first_differencing}. Default is \code{no} detrending.
+#' @param bandwidthrange is the range of the bandwidth used for the Gaussian kernel when gaussian filtering is selected. It is expressed as percentage of the timeseries length (must be numeric between 0 and 100). Default is 5\% - 100\%.
+#' @param spanrange parameter that controls the degree of smoothing (numeric between 0 and 100). Default is 5\% - 100\%. see more on loess{stats}
+#' @param degree the degree of polynomial to be used for when loess fitting is applied, normally 1 or 2 (Default). see more on loess{stats}
+#' @param incrbandwidth is the size to increment the bandwidth used for the Gaussian kernel when gaussian filtering is applied. It is expressed as percentage of the timeseries length (must be numeric between 0 and 100). Default is 20.
+#' @param incrspanrange Span range
+#' @param logtransform logical. If TRUE data are logtransformed prior to analysis as log(X+1). Default is FALSE. 
+#' @param interpolate logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
 #' 
 # Returns:
 #'  @return \code{sensitivity_ews} returns a matrix that contains the Kendall tau rank correlation estimates for the rolling window sizes (rows) and bandwidths (columns), if \code{gaussian filtering} is selected. 
@@ -47,7 +47,7 @@
 
 sensitivity_ews <- function(timeseries, indicator = c("ar1", "sd", "acf1", "sk", 
     "kurt", "cv", "returnrate", "densratio"), winsizerange = c(25, 75), incrwinsize = 25, 
-    detrending = c("no", "gaussian", "loess", "linear", "first-diff"), bandwidthrange = c(5, 
+    detrending = c("no", "gaussian", "loess", "linear", "first_diff"), bandwidthrange = c(5, 
         100), spanrange = c(5, 100), degree = NULL, incrbandwidth = 20, incrspanrange = 10, 
     logtransform = FALSE, interpolate = FALSE) {
     
@@ -279,7 +279,7 @@ sensitivity_ews <- function(timeseries, indicator = c("ar1", "sd", "acf1", "sk",
         
     } else if (detrending == "linear") {
         nsmY <- resid(lm(Y ~ timeindex))
-    } else if (detrending == "first-diff") {
+    } else if (detrending == "first_diff") {
         nsmY <- diff(Y)
     } else if (detrending == "no") {
         nsmY <- Y

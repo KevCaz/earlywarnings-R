@@ -65,11 +65,11 @@ Bandi5 <- function(x0, dx, nx, DT, bw, na, avec) {
 #' Here x is the state variable, f() and g() are nonlinear functions, dW is a Wiener process and dJ is a jump process. Jumps are large, one-step, positive or negative shocks that are uncorrelated in time. 
 #'
 #' Arguments:
-#'    @param timeseries a numeric vector of the observed univariate timeseries values or a numeric matrix where the first column represents the time index and the second the observed timeseries values. Use vectors/matrices with headings.
-#'    @param bandwidth is the bandwidht of the kernel regressor (must be numeric). Default is 0.6.
-#'    @param na is the number of points for computing the kernel (must be numeric). Default is 500.
-#'    @param logtransform logical. If TRUE data are logtransformed prior to analysis as log(X+1). Default is FALSE.
-#'    @param interpolate logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
+#' @param timeseries a numeric vector of the observed univariate timeseries values or a numeric matrix where the first column represents the time index and the second the observed timeseries values. Use vectors/matrices with headings.
+#' @param bandwidth is the bandwidht of the kernel regressor (must be numeric). Default is 0.6.
+#' @param na is the number of points for computing the kernel (must be numeric). Default is 500.
+#' @param logtransform logical. If TRUE data are logtransformed prior to analysis as log(X+1). Default is FALSE.
+#' @param interpolate logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
 #' 
 # Returns:
 #'  @return \code{ddjnonparam_ews} returns an object with elements:
@@ -84,7 +84,7 @@ Bandi5 <- function(x0, dx, nx, DT, bw, na, avec) {
 #'  @return \item{Diff2.t}{is the diffusion over \code{Tvec1}.}
 #'  @return \item{Lamda.t}{is the jump intensity over \code{Tvec1}.}
 #'
-#' In addition, \code{ddjnonparam_ews} returns a first plot with the original timeseries and the residuals after first-differencing. A second plot shows the nonparametric conditional variance, total variance, diffusion and jump intensity over the data, and a third plot the same nonparametric statistics over time.
+#' In addition, \code{ddjnonparam_ews} returns a first plot with the original timeseries and the residuals after first_differencing. A second plot shows the nonparametric conditional variance, total variance, diffusion and jump intensity over the data, and a third plot the same nonparametric statistics over time.
 #'  
 #' @export
 #' 
@@ -169,7 +169,7 @@ ddjnonparam_ews <- function(timeseries, bandwidth = 0.6, na = 500, logtransform 
     plot(Tvec1, Xvec1, type = "l", col = "black", lwd = 2, xlab = "", ylab = "original data")
     grid()
     plot(Tvec1[1:length(Tvec1) - 1], dXvec1, type = "l", col = "black", lwd = 2, 
-        xlab = "time", ylab = "first-diff data")
+        xlab = "time", ylab = "first_diff data")
     grid()
     
     # Plot indicators versus a

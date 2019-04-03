@@ -1,5 +1,3 @@
-
-
 find.minima <- function (f) {
   find.maxima(-f)
 }
@@ -29,6 +27,5 @@ find.maxima <- function (f) {
       }
       cnt <- cnt + 1
     }
-    ops 
+    ops
 }
-
