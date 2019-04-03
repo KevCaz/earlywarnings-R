@@ -18,12 +18,12 @@
 #' @param interpolate logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
 #'
 # Returns:
-#'   @return \code{surrogates_ews} returns a matrix that contains:
-#'   @return \item{Kendall tau estimate original}{the trends of the original timeseries.}
-#'   @return \item{Kendall tau p-value original}{the p-values of the trends of the original timeseries.}
-#'   @return \item{Kendall tau estimate surrogates}{the trends of the surrogate timeseries.}
-#'   @return \item{Kendall tau p-value surrogates}{the associated p-values of the trends of the surrogate timeseries.}
-#'   @return \item{significance p}{the p-value for the original Kendall tau rank correlation estimate compared to the surrogates.}
+#' @return \code{surrogates_ews} returns a matrix that contains:
+#' @return `Kendall tau estimate original`: the trends of the original timeseries.
+#' @return `Kendall tau p-value original`: the p-values of the trends of the original timeseries.
+#' @return `Kendall tau estimate surrogates`: the trends of the surrogate timeseries.
+#' @return `Kendall tau p-value surrogates`: the associated p-values of the trends of the surrogate timeseries.
+#' @return `significance p`: the p-value for the original Kendall tau rank correlation estimate compared to the surrogates.
 #'
 #' In addition, \code{surrogates_ews} returns a plot with the distribution of the surrogate Kendall tau estimates and the Kendall tau estimate of the original series. Vertical lines indicate the 5\% and 95\% significance levels.
 #'
@@ -70,14 +70,10 @@ surrogates_ews <- function(timeseries, indicator = c("ar1", "sd", "acf1", "sk", 
     if (interpolate) {
         YY <- approx(timeindex, Y, n = length(Y), method = "linear")
         Y <- YY$y
-    } else {
-        Y <- Y
-    }
+    } else
 
     # Log-transformation
-    if (logtransform) {
-        Y <- log(Y + 1)
-    }
+    if (logtransform) Y <- log(Y + 1)
 
     # Detrending
     detrending <- match.arg(detrending)

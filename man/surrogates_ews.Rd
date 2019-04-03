@@ -29,16 +29,22 @@ surrogates_ews(timeseries, indicator = c("ar1", "sd", "acf1", "sk",
 
 \item{logtransform}{logical. If TRUE data are logtransformed prior to analysis as log(X+1). Default is FALSE.}
 
-\item{interpolate}{logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
+\item{interpolate}{logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).}
+}
+\value{
+\code{surrogates_ews} returns a matrix that contains:
 
-@return \code{surrogates_ews} returns a matrix that contains:
-@return \item{Kendall tau estimate original}{the trends of the original timeseries.}
-@return \item{Kendall tau p-value original}{the p-values of the trends of the original timeseries.}
-@return \item{Kendall tau estimate surrogates}{the trends of the surrogate timeseries.}
-@return \item{Kendall tau p-value surrogates}{the associated p-values of the trends of the surrogate timeseries.}
-@return \item{significance p}{the p-value for the original Kendall tau rank correlation estimate compared to the surrogates.}
+\code{Kendall tau estimate original}: the trends of the original timeseries.
 
-In addition, \code{surrogates_ews} returns a plot with the distribution of the surrogate Kendall tau estimates and the Kendall tau estimate of the original series. Vertical lines indicate the 5\% and 95\% significance levels.}
+\code{Kendall tau p-value original}: the p-values of the trends of the original timeseries.
+
+\code{Kendall tau estimate surrogates}: the trends of the surrogate timeseries.
+
+\code{Kendall tau p-value surrogates}: the associated p-values of the trends of the surrogate timeseries.
+
+\code{significance p}: the p-value for the original Kendall tau rank correlation estimate compared to the surrogates.
+
+In addition, \code{surrogates_ews} returns a plot with the distribution of the surrogate Kendall tau estimates and the Kendall tau estimate of the original series. Vertical lines indicate the 5\% and 95\% significance levels.
 }
 \description{
 \code{surrogates_ews} is used to estimate distributions of trends in statistical moments from different surrogate timeseries generated after fitting an ARMA(p,q) model on the data. The trends are estimated by the nonparametric Kendall tau correlation coefficient and can be compared to the trends estimated in the original timeseries to produce probabilities of false positives.

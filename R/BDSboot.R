@@ -10,9 +10,9 @@ BDSboot <- function(X, varname, nboot, epsvec, emb) {
     neps <- length(epsvec)
 
     # Compute and print BDS test
-    message(rep("*", 60), quote = FALSE)
-    message(c("BDS test for ", varname), quote = FALSE)
-    message(c("Embedding dimension = ", emb), quote = FALSE)
+    add_stars(60)
+    message(c("BDS test for ", varname))
+    message(c("Embedding dimension = ", emb))
 
     BDS.data <- bds.test(StdEpsAll, m = emb, epsvec)
 
@@ -51,6 +51,6 @@ BDSboot <- function(X, varname, nboot, epsvec, emb) {
         message(Pboot[im, ])
     }
 
-    message(rep("*", 60), quote = FALSE)
+    add_stars(60)
 
 }  # end function

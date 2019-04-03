@@ -11,8 +11,10 @@ UnivariateGrouping(x, breakpoints)
 
 \item{breakpoints}{Cluster breakpoints
 
-Returns:
-@return A vector of cluster indices}
+Returns:}
+}
+\value{
+A vector of cluster indices
 }
 \description{
 Arguments:

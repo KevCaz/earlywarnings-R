@@ -75,7 +75,7 @@ ch_ews <- function(timeseries, winsize = 10, alpha = 0.1, optim = TRUE, lags = 4
 
         # the next line applys the autoregressive model optimized using AIC then we omit
         # the first data point(s) which come back as NA and square the residuals
-        if (optim == TRUE) {
+        if (optim) {
             arm <- ar(ts.in[(i2 - (winSize - 1)):i2], method = "ols")
         } else {
             arm <- ar(ts.in[(i2 - (winSize - 1)):i2], aic = FALSE, order.max = lags,
@@ -125,7 +125,6 @@ ch_ews <- function(timeseries, winsize = 10, alpha = 0.1, optim = TRUE, lags = 4
 
     # this creates a very simple plot that is well fitted to the data.  it also plots
     # the critical value line
-
     if (plot) plot_ch_ews(timeindex, tsin, sto)
 
     sto

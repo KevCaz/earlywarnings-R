@@ -19,16 +19,16 @@ ddjnonparam_ews(timeseries, bandwidth = 0.6, na = 500,
 \item{interpolate}{logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
 
 @return \code{ddjnonparam_ews} returns an object with elements:
-@return \item{avec}{is the mesh for which values of the nonparametric statistics are estimated.}
-@return \item{S2.vec}{is the conditional variance of the timeseries \code{x} over \code{avec}.}
-@return \item{TotVar.dx.vec}{is the total variance of \code{dx} over \code{avec}.}
-@return \item{Diff2.vec}{is the diffusion estimated as \code{total variance - jumping intensity} vs \code{avec}.}
-@return \item{LamdaZ.vec}{is the jump intensity over \code{avec}.}
-@return \item{Tvec1}{is the timeindex.}
-@return \item{S2.t}{is the conditional variance of the timeseries \code{x} data over \code{Tvec1}.}
-@return \item{TotVar.t}{is the total variance of \code{dx} over \code{Tvec1}.}
-@return \item{Diff2.t}{is the diffusion over \code{Tvec1}.}
-@return \item{Lamda.t}{is the jump intensity over \code{Tvec1}.}
+@return \code{avec}: is the mesh for which values of the nonparametric statistics are estimated.
+@return \code{S2.vec}: is the conditional variance of the timeseries \code{x} over \code{avec}.
+@return \code{TotVar.dx.vec}: is the total variance of \code{dx} over \code{avec}.
+@return \code{Diff2.vec}: is the diffusion estimated as \code{total variance - jumping intensity} vs \code{avec}.
+@return \code{LamdaZ.vec}: is the jump intensity over \code{avec}.
+@return \code{Tvec1}: is the timeindex.
+@return \code{S2.t}: is the conditional variance of the timeseries \code{x} data over \code{Tvec1}.
+@return \code{TotVar.t}: is the total variance of \code{dx} over \code{Tvec1}.
+@return \code{Diff2.t}: is the diffusion over \code{Tvec1}.
+@return \code{Lamda.t}: is the jump intensity over \code{Tvec1}.
 
 In addition, \code{ddjnonparam_ews} returns a first plot with the original timeseries and the residuals after first_differencing. A second plot shows the nonparametric conditional variance, total variance, diffusion and jump intensity over the data, and a third plot the same nonparametric statistics over time.}
 }

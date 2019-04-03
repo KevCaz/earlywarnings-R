@@ -5,11 +5,11 @@
 
 BDSboot <- function(X, varname, nboot, epsvec, emb) {
     # begin function
-    
+
     StdEpsAll <- X  # name of variable for BDS
     neps <- length(epsvec)
     # Compute and print BDS test
-    print("***********************************************", quote = FALSE)
+
     print(c("BDS test for ", varname), quote = FALSE)
     print(c("Embedding dimension = ", emb), quote = FALSE)
     BDS.data <- bds.test(StdEpsAll, m = emb, epsvec)
@@ -43,7 +43,7 @@ BDSboot <- function(X, varname, nboot, epsvec, emb) {
         print(c("For epsilon = ", round(epsvec, 3), "bootstrap P = "), quote = FALSE)
         print(Pboot[im, ])
     }
-    print("**********************************************************", quote = FALSE)
+    add_stars(60)
 }  # end function
 
 
@@ -64,41 +64,41 @@ BDSboot <- function(X, varname, nboot, epsvec, emb) {
 #' @param boots is the number of bootstraps performed to estimate significance p values for the BDS test. Default is 1000.
 #' @param logtransform logical. If TRUE data are logtransformed prior to analysis as log(X+1). Default is FALSE.
 #' @param interpolate logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
-#' 
+#'
 # Values:
 #' @return \code{bdstest_ews} returns output on the R console that summarizes the BDS test statistic for all embedding dimensions and  \code{epsilon} values used, and for first_differenced data, ARMA(p.q) residuals, and GARCH(0,1) residuals). Also the significance p values are returned estimated both by comparing to a standard normal distribution and by bootstrapping.
-#' 
+#'
 #' In addition, \code{bdstest_ews} returns a plot with the original timeseries, the residuals after first_differencing, and fitting the ARMA(p,q) and GARCH(0,1) models. Also the autocorrelation \code{\link{acf}} and partial autocorrelation \code{\link{pacf}} functions are estimated serving as guides for the choice of lags of the linear models fitted to the data.
-#'  
+#'
 #' @export
-#' 
+#'
 #' @author S. R. Carpenter, modified by V. Dakos
 #' @references J. B. Cromwell, W. C. Labys and M. Terraza (1994): Univariate Tests for Time Series Models, Sage, Thousand Oaks, CA, pages 32-36.
-#' 
-#' Dakos, V., et al (2012).'Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data.' \emph{PLoS ONE} 7(7): e41010. doi:10.1371/journal.pone.0041010 
-#' @seealso 
-#' \code{\link{generic_ews}}; 
-#' \code{\link{ddjnonparam_ews}}; 
-#' \code{\link{bdstest_ews}}; 
-#' \code{\link{sensitivity_ews}}; 
-#' \code{\link{surrogates_ews}}; 
-#' \code{\link{ch_ews}}; 
-#' \code{\link{movpotential_ews}}; 
+#'
+#' Dakos, V., et al (2012).'Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data.' \emph{PLoS ONE} 7(7): e41010. doi:10.1371/journal.pone.0041010
+#' @seealso
+#' \code{\link{generic_ews}};
+#' \code{\link{ddjnonparam_ews}};
+#' \code{\link{bdstest_ews}};
+#' \code{\link{sensitivity_ews}};
+#' \code{\link{surrogates_ews}};
+#' \code{\link{ch_ews}};
+#' \code{\link{movpotential_ews}};
 #' \code{\link{livpotential_ews}}
 # ; \code{\link{timeVAR_ews}}; \code{\link{thresholdAR_ews}}
 #' @importFrom tseries garch
 #' @import quadprog
 #' @examples #
 #' data(foldbif)
-#' bdstest_ews(foldbif, ARMAoptim=FALSE, ARMAorder=c(1,0), 
-#'   	       embdim=3, epsilon=0.5, boots=200, 
+#' bdstest_ews(foldbif, ARMAoptim=FALSE, ARMAorder=c(1,0),
+#'   	       embdim=3, epsilon=0.5, boots=200,
 #'	       logtransform=FALSE, interpolate=FALSE)
 #' @keywords early-warning
-#' 
-bdstest_ews <- function(timeseries, ARMAoptim = TRUE, ARMAorder = c(1, 0), GARCHorder = c(0, 
-    1), embdim = 3, epsilon = c(0.5, 0.75, 1), boots = 1000, logtransform = FALSE, 
+#'
+bdstest_ews <- function(timeseries, ARMAoptim = TRUE, ARMAorder = c(1, 0), GARCHorder = c(0,
+    1), embdim = 3, epsilon = c(0.5, 0.75, 1), boots = 1000, logtransform = FALSE,
     interpolate = FALSE) {
-    
+
     timeseries <- ts(timeseries)  #strict data-types the input data as tseries object for use in later steps
     if (ncol(timeseries) == 1) {
         Y = timeseries
@@ -109,34 +109,32 @@ bdstest_ews <- function(timeseries, ARMAoptim = TRUE, ARMAorder = c(1, 0), GARCH
     } else {
         warning("not right format of timeseries input")
     }
-    
+
     # Interpolation
     if (interpolate) {
         YY <- approx(timeindex, Y, n = length(Y), method = "linear")
         Y <- YY$y
-    } else {
-        Y <- Y
     }
-    
+
     # Log-transformation
     if (logtransform) {
         Y <- log(Y + 1)
     }
-    
+
     # Detrend the data
     Eps1 <- diff(Y)
-    
+
     # Define BDS parameters
     nboot <- boots
     emb <- embdim  # embedding dimension
     eps.sd <- sd(as.vector(Eps1))
     epsvec <- round(eps.sd * epsilon, 6)
-    
+
     # Run BDS with bootstrapping
     BDSboot(Eps1, c("Detrended data"), nboot, epsvec, emb)
-    
+
     # Fit ARMA model based on AIC
-    if (ARMAoptim == TRUE) {
+    if (ARMAoptim) {
         arma = matrix(, 4, 5)
         for (ij in 1:4) {
             for (jj in 0:4) {
@@ -155,47 +153,47 @@ bdstest_ews <- function(timeseries, ARMAoptim = TRUE, ARMAorder = c(1, 0), GARCH
         print(armafit, digits = 4)
         Eps2 <- armafit$residuals  #[2:armafit$n.used]
     }
-    
+
     # Define BDS parameters
     nboot <- boots
     emb <- embdim  # embedding dimension
     eps.sd <- sd(as.vector(Eps2))
     epsvec <- round(eps.sd * epsilon, 6)
-    
+
     # Run BDS with bootstrapping
     BDSboot(Eps2, c("ARMA model residuals"), nboot, epsvec, emb)
-    
+
     # Fit GARCH(0,1) model to detrended data
     Gfit <- garch(Y, order = c(GARCHorder[1], GARCHorder[2]))
     print("GARCH(0,1) model fit to detrended data", quote = FALSE)
     print(Gfit, digits = 4)
-    
+
     Eps3 <- Gfit$residuals[2:length(Y)]
-    
+
     # Define BDS parameters
     nboot <- boots
     emb <- embdim  # embedding dimension
     eps.sd <- sd(as.vector(Eps3))
     epsvec <- round(eps.sd * epsilon, 6)
-    
+
     # Run BDS with bootstrapping
     BDSboot(Eps3, c("GARCH(0,1) model residuals"), nboot, epsvec, emb)
-    
+
     # Plot the data
     dev.new()
-    par(fig = c(0, 0.5, 0.5, 1), mar = c(3, 4, 3, 2), cex.axis = 0.8, cex.lab = 1, 
+    par(fig = c(0, 0.5, 0.5, 1), mar = c(3, 4, 3, 2), cex.axis = 0.8, cex.lab = 1,
         mfrow = c(2, 2), mgp = c(1.5, 0.5, 0), oma = c(1, 1, 2, 1))
     plot(timeindex, Y, type = "l", col = "black", lwd = 1.7, xlab = "time", ylab = "data")
     par(fig = c(0.5, 1, 0.8, 0.95), mar = c(0, 4, 0, 2), new = TRUE)
-    plot(timeindex[1:(length(timeindex) - 1)], Eps1, type = "l", col = "red", lwd = 1, 
+    plot(timeindex[1:(length(timeindex) - 1)], Eps1, type = "l", col = "red", lwd = 1,
         xlab = "", ylab = "", xaxt = "n")
     legend("topright", "first_diff", bty = "n", cex = 0.8)
     par(fig = c(0.5, 1, 0.65, 0.8), new = TRUE)
-    plot(timeindex[1:(length(timeindex))], Eps2, type = "l", xlab = "", ylab = "residuals", 
+    plot(timeindex[1:(length(timeindex))], Eps2, type = "l", xlab = "", ylab = "residuals",
         xaxt = "n", col = "green", lwd = 1)
     legend("topright", "AR", bty = "n", cex = 0.8)
     par(fig = c(0.5, 1, 0.5, 0.65), new = TRUE)
-    plot(timeindex[1:(length(timeindex) - 1)], Eps3, type = "l", col = "blue", xlab = "time", 
+    plot(timeindex[1:(length(timeindex) - 1)], Eps3, type = "l", col = "blue", xlab = "time",
         ylab = "", lwd = 1)
     legend("topright", "GARCH", bty = "n", cex = 0.8)
     mtext("time", side = 1, outer = FALSE, line = 1.4, cex = 0.8)
@@ -205,4 +203,4 @@ bdstest_ews <- function(timeseries, ARMAoptim = TRUE, ARMAorder = c(1, 0), GARCH
     par(fig = c(0.5, 1, 0, 0.4), new = TRUE)
     pacf(Y, lag.max = 25, main = "")
     mtext("BDS_test Diagnostics", side = 3, line = 0.2, outer = TRUE)
-} 
+}

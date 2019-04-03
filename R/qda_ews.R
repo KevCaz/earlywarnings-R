@@ -104,9 +104,7 @@ generic_RShiny <- function(timeseries, winsize = 50, detrending = c("no", "gauss
     } # else nothing
 
     # Log-transformation
-    if (logtransform) {
-        Y <- log(Y + 1)
-    }
+    if (logtransform) Y <- log(Y + 1)
 
     # Detrending
     detrending <- match.arg(detrending)

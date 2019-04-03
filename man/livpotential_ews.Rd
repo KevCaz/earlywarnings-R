@@ -25,17 +25,26 @@ livpotential_ews(x, std = 1, bw = "nrd", weights = c(),
 
 \item{density.smoothing}{Add a small constant density across the whole observation range to regularize density estimation (and to avoid zero probabilities within the observation range). This parameter adds uniform density across the observation range, scaled by density.smoothing.}
 
-\item{detection.limit}{minimum accepted density for a maximum; as a multiple of kernel height
+\item{detection.limit}{minimum accepted density for a maximum; as a multiple of kernel height}
+}
+\value{
+\code{livpotential} returns a list with the following elements:
 
-@return \code{livpotential} returns a list with the following elements:
-@return \item{xi}{the grid of points on which the potential is estimated}
-@return \item{pot}{The estimated potential: -log(f)*std^2/2, where f is the density.}
-@return \item{density}{Density estimate corresponding to the potential.}
-@return \item{min.inds}{indices of the grid points at which the density has minimum values; (-potentials; neglecting local optima)}
-@return \item{max.inds}{indices the grid points at which the density has maximum values; (-potentials; neglecting local optima)}
-@return \item{bw}{bandwidth of kernel used}
-@return \item{min.points}{grid point values at which the density has minimum values; (-potentials; neglecting local optima)}
-@return \item{max.points}{grid point values at which the density has maximum values; (-potentials; neglecting local optima)}}
+\code{xi}: the grid of points on which the potential is estimated
+
+\code{pot}: The estimated potential: -log(f)*std^2/2, where f is the density.
+
+\code{density}: Density estimate corresponding to the potential.
+
+\code{min.inds}: indices of the grid points at which the density has minimum values; (-potentials; neglecting local optima)
+
+\code{max.inds}: indices the grid points at which the density has maximum values; (-potentials; neglecting local optima)
+
+\code{bw}: bandwidth of kernel used
+
+\code{min.points}: grid point values at which the density has minimum values; (-potentials; neglecting local optima)
+
+\code{max.points}: grid point values at which the density has maximum values; (-potentials; neglecting local optima)
 }
 \description{
 \code{livpotential_ews} performs one-dimensional potential estimation derived from a uni-variate timeseries

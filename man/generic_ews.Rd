@@ -28,20 +28,30 @@ generic_ews(timeseries, winsize = 50, detrending = c("no", "gaussian",
 
 \item{AR_n}{logical. If TRUE the best fitted AR(n) model is fitted to the data. Default is FALSE.}
 
-\item{powerspectrum}{logical. If TRUE the power spectrum within each rolling window is plotted. Default is FALSE.
+\item{powerspectrum}{logical. If TRUE the power spectrum within each rolling window is plotted. Default is FALSE.}
+}
+\value{
+\code{generic_ews} returns a matrix that contains:
 
-@return \code{generic_ews} returns a matrix that contains:
-@return \item{tim}{the time index.}
-@return \item{ar1}{the \code{autoregressive coefficient ar(1)} of a first order AR model fitted on the data within the rolling window.}
-@return \item{sd}{the \code{standard deviation} of the data estimated within each rolling window.}
-@return \item{sk}{the \code{skewness} of the data estimated within each rolling window.}
-@return \item{kurt}{the \code{kurtosis} of the data estimated within each rolling window.}
-@return \item{cv}{the \code{coefficient of variation} of the data estimated within each rolling window.}
-@return \item{returnrate}{the return rate of the data estimated as \code{1-ar(1)} cofficient within each rolling window.}
-@return \item{densratio}{the \code{density ratio} of the power spectrum of the data estimated as the ratio of low frequencies over high frequencies within each rolling window.}
-@return \item{acf1}{the \code{autocorrelation at first lag} of the data estimated within each rolling window.}
+\code{tim}: the time index.
 
-In addition, \code{generic_ews} returns three plots. The first plot contains the original data, the detrending/filtering applied and the residuals (if selected), and all the moment statistics. For each statistic trends are estimated by the nonparametric Kendall tau correlation.  The second plot, if asked, quantifies resilience indicators fitting AR(n) selected by the Akaike Information Criterion. The third plot, if asked, is the power spectrum estimated by \code{\link{spec.ar}} for all frequencies within each rolling window.}
+\code{ar1}: the \code{autoregressive coefficient ar(1)} of a first order AR model fitted on the data within the rolling window.
+
+\code{sd}: the \code{standard deviation} of the data estimated within each rolling window.
+
+\code{sk}: the \code{skewness} of the data estimated within each rolling window.
+
+\code{kurt}: the \code{kurtosis} of the data estimated within each rolling window.
+
+\code{cv}: the \code{coefficient of variation} of the data estimated within each rolling window.
+
+\code{returnrate}: the return rate of the data estimated as \code{1-ar(1)} cofficient within each rolling window.
+
+\code{densratio}: the \code{density ratio} of the power spectrum of the data estimated as the ratio of low frequencies over high frequencies within each rolling window.
+
+\code{acf1}: the \code{autocorrelation at first lag} of the data estimated within each rolling window.
+
+In addition, \code{generic_ews} returns three plots. The first plot contains the original data, the detrending/filtering applied and the residuals (if selected), and all the moment statistics. For each statistic trends are estimated by the nonparametric Kendall tau correlation.  The second plot, if asked, quantifies resilience indicators fitting AR(n) selected by the Akaike Information Criterion. The third plot, if asked, is the power spectrum estimated by \code{\link{spec.ar}} for all frequencies within each rolling window.
 }
 \description{
 \code{generic_ews} is used to estimate statistical moments within rolling windows along a timeserie

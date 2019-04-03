@@ -7,7 +7,7 @@
 
 # Function to compute Bandi, Johannes etc estimators for time series x
 Bandi5 <- function(x0, dx, nx, DT, bw, na, avec) {
-    
+
     # Set up constants and useful preliminaries
     SF <- 1/(bw * sqrt(2 * pi))  # scale factor for kernel calculation
     x02 <- x0 * x0  # second power of x
@@ -52,7 +52,7 @@ Bandi5 <- function(x0, dx, nx, DT, bw, na, avec) {
     # outputs of function: mu.a is drift sigma2.dx is total variance of dx diff.a is
     # diffusion sigma2.Z is jump magnitude lamda.Z is jump frequency S2.x is
     # conditional variance
-    return(outlist)
+    outlist
 }  # end Bandi function
 
 #' Description: Drift Diffusion Jump Nonparametrics Early Warning Signals
@@ -62,7 +62,7 @@ Bandi5 <- function(x0, dx, nx, DT, bw, na, avec) {
 # Details:
 #' The approach is based on estimating terms of a drift-diffusion-jump model as a surrogate for the unknown true data generating process:
 #' [1]    \eqn{dx = f(x,\theta)dt + g(x,\theta)dW + dJ}
-#' Here x is the state variable, f() and g() are nonlinear functions, dW is a Wiener process and dJ is a jump process. Jumps are large, one-step, positive or negative shocks that are uncorrelated in time. 
+#' Here x is the state variable, f() and g() are nonlinear functions, dW is a Wiener process and dJ is a jump process. Jumps are large, one-step, positive or negative shocks that are uncorrelated in time.
 #'
 #' Arguments:
 #' @param timeseries a numeric vector of the observed univariate timeseries values or a numeric matrix where the first column represents the time index and the second the observed timeseries values. Use vectors/matrices with headings.
@@ -70,32 +70,32 @@ Bandi5 <- function(x0, dx, nx, DT, bw, na, avec) {
 #' @param na is the number of points for computing the kernel (must be numeric). Default is 500.
 #' @param logtransform logical. If TRUE data are logtransformed prior to analysis as log(X+1). Default is FALSE.
 #' @param interpolate logical. If TRUE linear interpolation is applied to produce a timeseries of equal length as the original. Default is FALSE (assumes there are no gaps in the timeseries).
-#' 
+#'
 # Returns:
 #'  @return \code{ddjnonparam_ews} returns an object with elements:
-#'  @return \item{avec}{is the mesh for which values of the nonparametric statistics are estimated.}
-#'  @return \item{S2.vec}{is the conditional variance of the timeseries \code{x} over \code{avec}.}
-#'  @return \item{TotVar.dx.vec}{is the total variance of \code{dx} over \code{avec}.}
-#'  @return \item{Diff2.vec}{is the diffusion estimated as \code{total variance - jumping intensity} vs \code{avec}.}
-#'  @return \item{LamdaZ.vec}{is the jump intensity over \code{avec}.}
-#'  @return \item{Tvec1}{is the timeindex.}
-#'  @return \item{S2.t}{is the conditional variance of the timeseries \code{x} data over \code{Tvec1}.}
-#'  @return \item{TotVar.t}{is the total variance of \code{dx} over \code{Tvec1}.}
-#'  @return \item{Diff2.t}{is the diffusion over \code{Tvec1}.}
-#'  @return \item{Lamda.t}{is the jump intensity over \code{Tvec1}.}
+#'  @return `avec`: is the mesh for which values of the nonparametric statistics are estimated.
+#'  @return `S2.vec`: is the conditional variance of the timeseries \code{x} over \code{avec}.
+#'  @return `TotVar.dx.vec`: is the total variance of \code{dx} over \code{avec}.
+#'  @return `Diff2.vec`: is the diffusion estimated as \code{total variance - jumping intensity} vs \code{avec}.
+#'  @return `LamdaZ.vec`: is the jump intensity over \code{avec}.
+#'  @return `Tvec1`: is the timeindex.
+#'  @return `S2.t`: is the conditional variance of the timeseries \code{x} data over \code{Tvec1}.
+#'  @return `TotVar.t`: is the total variance of \code{dx} over \code{Tvec1}.
+#'  @return `Diff2.t`: is the diffusion over \code{Tvec1}.
+#'  @return `Lamda.t`: is the jump intensity over \code{Tvec1}.
 #'
 #' In addition, \code{ddjnonparam_ews} returns a first plot with the original timeseries and the residuals after first_differencing. A second plot shows the nonparametric conditional variance, total variance, diffusion and jump intensity over the data, and a third plot the same nonparametric statistics over time.
-#'  
+#'
 #' @export
-#' 
+#'
 #' @author S. R. Carpenter, modified by V. Dakos
 #' @references Carpenter, S. R. and W. A. Brock (2011). 'Early warnings of unknown nonlinear shifts: a nonparametric approach.' \emph{Ecology} 92(12): 2196-2201
-#' 
-#' Dakos, V., et al (2012).'Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data.' \emph{PLoS ONE} 7(7): e41010. doi:10.1371/journal.pone.0041010 
-#' @seealso 
+#'
+#' Dakos, V., et al (2012).'Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data.' \emph{PLoS ONE} 7(7): e41010. doi:10.1371/journal.pone.0041010
+#' @seealso
 #' \code{\link{generic_ews}}; \code{\link{ddjnonparam_ews}}; \code{\link{bdstest_ews}}; \code{\link{sensitivity_ews}};\code{\link{surrogates_ews}}; \code{\link{ch_ews}}; \code{\link{movpotential_ews}}; \code{\link{livpotential_ews}}
 # ; \code{\link{timeVAR_ews}}; \code{\link{thresholdAR_ews}}
-#' @examples 
+#' @examples
 #' data(foldbif)
 #' output<-ddjnonparam_ews(foldbif,bandwidth=0.6,na=500,
 #' logtransform=TRUE,interpolate=FALSE)
@@ -103,9 +103,9 @@ Bandi5 <- function(x0, dx, nx, DT, bw, na, avec) {
 
 
 # MAIN FUNCTION
-ddjnonparam_ews <- function(timeseries, bandwidth = 0.6, na = 500, logtransform = TRUE, 
+ddjnonparam_ews <- function(timeseries, bandwidth = 0.6, na = 500, logtransform = TRUE,
     interpolate = FALSE) {
-    
+
     timeseries <- ts(timeseries)  #strict data-types the input data as tseries object for use in later steps
     if (dim(timeseries)[2] == 1) {
         Y = timeseries
@@ -116,33 +116,29 @@ ddjnonparam_ews <- function(timeseries, bandwidth = 0.6, na = 500, logtransform 
     } else {
         warning("not right format of timeseries input")
     }
-    
+
     # Interpolation
     if (interpolate) {
         YY <- approx(timeindex, Y, n = length(Y), method = "linear")
         Y <- YY$y
-    } else {
-        Y <- Y
     }
-    
+
     # Log-transformation
-    if (logtransform) {
-        Y <- log(Y + 1)
-    }
-    
+    if (logtransform) Y <- log(Y + 1)
+
     # Preliminaries
     Xvec1 <- Y
     Tvec1 <- timeindex
     dXvec1 <- diff(Y)
-    
+
     DT <- Tvec1[2] - Tvec1[1]
-    bw <- bandwidth * sd(as.vector(Xvec1))  # bandwidth 
+    bw <- bandwidth * sd(as.vector(Xvec1))  # bandwidth
     alow <- min(Xvec1)
     ahigh <- max(Xvec1)
     na <- na
     avec <- seq(alow, ahigh, length.out = na)
     nx <- length(dXvec1)
-    
+
     # Bandi-type estimates
     ParEst <- Bandi5(Xvec1, dXvec1, nx, DT, bw, na, avec)
     Drift.vec <- ParEst[[1]]
@@ -151,7 +147,7 @@ ddjnonparam_ews <- function(timeseries, bandwidth = 0.6, na = 500, logtransform 
     Sigma2Z <- ParEst[[4]]
     LamdaZ.vec <- ParEst[[5]]
     S2.vec <- ParEst[[6]]
-    
+
     # Interpolate time courses of indicators
     TotVar.i <- approx(x = avec, y = TotVar.dx.vec, xout = Xvec1)
     TotVar.t <- TotVar.i$y
@@ -161,39 +157,39 @@ ddjnonparam_ews <- function(timeseries, bandwidth = 0.6, na = 500, logtransform 
     Lamda.t <- Lamda.i$y
     S2.i <- approx(x = avec, y = S2.vec, xout = Xvec1)
     S2.t <- S2.i$y
-    
+
     # Plot the data
     dev.new()
-    par(mfrow = c(2, 1), mar = c(3, 3, 2, 2), mgp = c(1.5, 0.5, 0), oma = c(1, 1, 
+    par(mfrow = c(2, 1), mar = c(3, 3, 2, 2), mgp = c(1.5, 0.5, 0), oma = c(1, 1,
         1, 1))
     plot(Tvec1, Xvec1, type = "l", col = "black", lwd = 2, xlab = "", ylab = "original data")
     grid()
-    plot(Tvec1[1:length(Tvec1) - 1], dXvec1, type = "l", col = "black", lwd = 2, 
+    plot(Tvec1[1:length(Tvec1) - 1], dXvec1, type = "l", col = "black", lwd = 2,
         xlab = "time", ylab = "first_diff data")
     grid()
-    
+
     # Plot indicators versus a
     dev.new()
-    par(mfrow = c(2, 2), mar = c(3, 3, 2, 2), cex.axis = 1, cex.lab = 1, mgp = c(2, 
+    par(mfrow = c(2, 2), mar = c(3, 3, 2, 2), cex.axis = 1, cex.lab = 1, mgp = c(2,
         1, 0), oma = c(1, 1, 2, 1))
     plot(avec, S2.vec, type = "l", lwd = 1, col = "black", xlab = "a", ylab = "conditional variance")
     plot(avec, TotVar.dx.vec, type = "l", lwd = 1, col = "blue", xlab = "a", ylab = "total variance of dx")
     plot(avec, Diff2.vec, type = "l", lwd = 1, col = "green", xlab = "a", ylab = "diffusion")
     plot(avec, LamdaZ.vec, type = "l", lwd = 1, col = "red", xlab = "a", ylab = "jump intensity")
     mtext("DDJ nonparametrics versus a", side = 3, line = 0.1, outer = TRUE)
-    
+
     # Plot indicators versus time
     dev.new()
-    par(mfrow = c(2, 2), mar = c(3, 3, 2, 2), cex.axis = 1, cex.lab = 1, mgp = c(1.5, 
+    par(mfrow = c(2, 2), mar = c(3, 3, 2, 2), cex.axis = 1, cex.lab = 1, mgp = c(1.5,
         0.5, 0), oma = c(1, 1, 2, 1))
     plot(Tvec1, S2.t, type = "l", lwd = 1, col = "black", xlab = "time", ylab = "conditional variance")
     plot(Tvec1, TotVar.t, type = "l", lwd = 1, col = "blue", xlab = "time", ylab = "total variance of dx")
     plot(Tvec1, Diff2.t, type = "l", lwd = 1, col = "green", xlab = "time", ylab = "diffusion")
     plot(Tvec1, Lamda.t, type = "l", lwd = 1, col = "red", xlab = "time", ylab = "jump intensity")
     mtext("DDJ nonparametrics versus time", side = 3, line = 0.1, outer = TRUE)
-    
+
     # Output
     nonpar_x <- data.frame(avec, S2.vec, TotVar.dx.vec, Diff2.vec, LamdaZ.vec)
     nonpar_t <- data.frame(Tvec1, S2.t, TotVar.t, Diff2.t, Lamda.t)
-    return(c(nonpar_x, nonpar_t))
-} 
+    c(nonpar_x, nonpar_t)
+}

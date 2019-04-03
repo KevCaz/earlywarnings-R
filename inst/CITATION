@@ -7,8 +7,8 @@ bibentry(
   bibtype = "Manual",
   title = "R Early Warning Signals Toolbox",,
   author = c(
-	 	 person(first ="Vasilis", last="Dakos", email = "vasilis.dakos@gmail.com"),
-	 	 person(first ="Leo", last="Lahti", email = "leo.lahti@iki.fi")
+	 	 person(given ="Vasilis", family = "Dakos", email = "vasilis.dakos@gmail.com"),
+	 	 person(given ="Leo", family = "Lahti", email = "leo.lahti@iki.fi")
 	 	 ),
   year = year,
   note = note,
@@ -24,17 +24,17 @@ citEntry(
       sep=""),
   title = "Methods for detecting early warnings of critical transitions in time series illustrated using simulated ecological data",
   author = c(
-	 	person(given ="Vasilis", family="Dakos", email = "vasilis.dakos@gmail.com"),
-		person(given ="Stephen R.", family="Carpenter"),
-		person(given ="William A.", family="Brock"),
-		person(given ="Aaron M.", family="Ellison"),
-		person(given ="Vishwesha", family="Guttal"),
-		person(given ="Anthony R.", family="Ives"),
-		person(given ="Sonia", family="K\'{e}fi"),
-		person(given ="Valerie", family="Livina"),
-		person(given ="David A.", family="Seekell"),
-		person(given ="Egbert H.", family="van Nes"),
-		person(given ="Marten", family="Scheffer")
+	 	person(given = "Vasilis", family="Dakos", email = "vasilis.dakos@gmail.com"),
+		person(given = "Stephen R.", family="Carpenter"),
+		person(given = "William A.", family="Brock"),
+		person(given = "Aaron M.", family="Ellison"),
+		person(given = "Vishwesha", family="Guttal"),
+		person(given = "Anthony R.", family="Ives"),
+		person(given = "Sonia", family="K\'{e}fi"),
+		person(given = "Valerie", family="Livina"),
+		person(given = "David A.", family="Seekell"),
+		person(given = "Egbert H.", family="van Nes"),
+		person(given = "Marten", family="Scheffer")
 	 	  ),
 	 journal = "PLoS ONE",
 	 volume = "7",

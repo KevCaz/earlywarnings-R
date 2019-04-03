@@ -1,5 +1,3 @@
-
-
 #' Description: Plot Potential
 #'
 #' Visualization of the potential function from the movpotential function
@@ -22,7 +20,7 @@
 #' @importFrom ggplot2 xlab
 #' @importFrom ggplot2 ylab
 #' @importFrom ggplot2 labs
-#' @return \item{ggplot2}{potential plotted}
+#' @return `ggplot2`: potential plotted
 #'
 #' @export
 #'
@@ -100,15 +98,15 @@ PlotPotential <- function(res, title = "", xlab.text, ylab.text, cutoff = 0.5, p
 #' @param detection.limit minimum accepted density for a maximum; as a multiple of kernel height
 #'
 # Returns:
-#'   @return \code{livpotential} returns a list with the following elements:
-#'   @return \item{xi}{the grid of points on which the potential is estimated}
-#'   @return \item{pot}{The estimated potential: -log(f)*std^2/2, where f is the density.}
-#'   @return \item{density}{Density estimate corresponding to the potential.}
-#'   @return \item{min.inds}{indices of the grid points at which the density has minimum values; (-potentials; neglecting local optima)}
-#'   @return \item{max.inds}{indices the grid points at which the density has maximum values; (-potentials; neglecting local optima)}
-#'   @return \item{bw}{bandwidth of kernel used}
-#'   @return \item{min.points}{grid point values at which the density has minimum values; (-potentials; neglecting local optima)}
-#'   @return \item{max.points}{grid point values at which the density has maximum values; (-potentials; neglecting local optima)}
+#' @return \code{livpotential} returns a list with the following elements:
+#' @return `xi`: the grid of points on which the potential is estimated
+#' @return `pot`: The estimated potential: -log(f)*std^2/2, where f is the density.
+#' @return `density`: Density estimate corresponding to the potential.
+#' @return `min.inds`: indices of the grid points at which the density has minimum values; (-potentials; neglecting local optima)
+#' @return `max.inds`: indices the grid points at which the density has maximum values; (-potentials; neglecting local optima)
+#' @return `bw`: bandwidth of kernel used
+#' @return `min.points`: grid point values at which the density has minimum values; (-potentials; neglecting local optima)
+#' @return `max.points`: grid point values at which the density has maximum values; (-potentials; neglecting local optima)
 #'
 #' @export
 #'

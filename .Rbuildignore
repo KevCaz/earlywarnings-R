@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 # Extra material related but not to be included in the package
 ./inst/extras/statfi.Rcheck/*
 ./inst/extras/..Rcheck/*
@@ -7,14 +9,10 @@
 ./inst/extras/*.Rmd
 inst/extras/.RData
 
-
 # Git related
 ./.git*
-
 # Travis scripts
 .travis.yml
-
 # Misc
 ./.*~
 ./*~
-

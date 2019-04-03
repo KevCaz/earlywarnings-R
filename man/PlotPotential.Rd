@@ -25,7 +25,7 @@ PlotPotential(res, title = "", xlab.text, ylab.text, cutoff = 0.5,
 \item{bins}{bins for contour plot. Overrides binwidth if given}
 }
 \value{
-\item{ggplot2}{potential plotted}
+\code{ggplot2}: potential plotted
 }
 \description{
 Visualization of the potential function from the movpotential function
